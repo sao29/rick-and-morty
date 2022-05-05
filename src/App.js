@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Characters from "./components/Characters";
+import Pagination from "./components/Pagination";
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -22,8 +23,11 @@ function App() {
   return (
     <>
       <Navbar brand="Rick and Morty App" />
-      <div className="container">
+      
+      <div className="container py-5">
+      <Pagination/>
     <Characters  characters={characters}></Characters>
+    <Pagination/>
       </div>
     </>
   );
