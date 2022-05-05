@@ -1,5 +1,18 @@
 # Getting Started with Create React App
 
+## this project is based on rick and morty
+
+- this project uses
+
+- fetch
+
+- Api rest
+
+- React
+
+- Boostrap
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
