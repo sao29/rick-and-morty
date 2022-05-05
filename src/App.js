@@ -6,7 +6,8 @@ import Pagination from "./components/Pagination";
 
 function App() {
   const [characters, setCharacters] = useState([]);
-  const [info, setInfo] = useState({});
+ //este estado se la paginacion 
+  const [siguiente, setSiguiente] = useState({});
 
   let urlInitial = "https://rickandmortyapi.com/api/character";
 
@@ -15,18 +16,18 @@ function App() {
       .then((respuesta) => respuesta.json())
       .then((data) => {
         setCharacters(data.results);
-        setInfo(data.info);
+        setSiguiente(data.info);
       
       })
       .catch((error) => console.log(error));
   };
 
   const onPrevious = () => {
-    fetchCharacters(info.prev);
+    fetchCharacters(siguiente.prev);
   };
 
   const onNext = () => {
-    fetchCharacters(info.next);
+    fetchCharacters(siguiente.next);
   };
 
   useEffect(() => {
@@ -39,8 +40,8 @@ function App() {
 
       <div className="container py-5">
         <Pagination
-          prev={info.prev}
-          next={info.next}
+          prev={siguiente.prev}
+          next={siguiente.next}
           onPrevious={onPrevious}
           onNext={onNext}
         />
