@@ -6,14 +6,27 @@ import Pagination from "./components/Pagination";
 
 function App() {
   const [characters, setCharacters] = useState([]);
+  const [info, setInfo] = useState({});
 
   let urlInitial = "https://rickandmortyapi.com/api/character";
 
   const fetchCharacters = (url) => {
     fetch(url)
-      .then((datos) => datos.json())
-      .then((info) => setCharacters(info.results))
+      .then((respuesta) => respuesta.json())
+      .then((data) => {
+        setCharacters(data.results);
+        setInfo(data.info);
+      
+      })
       .catch((error) => console.log(error));
+  };
+
+  const onPrevious = () => {
+    fetchCharacters(info.prev);
+  };
+
+  const onNext = () => {
+    fetchCharacters(info.next);
   };
 
   useEffect(() => {
@@ -23,11 +36,16 @@ function App() {
   return (
     <>
       <Navbar brand="Rick and Morty App" />
-      
+
       <div className="container py-5">
-      <Pagination/>
-    <Characters  characters={characters}></Characters>
-    <Pagination/>
+        <Pagination
+          prev={info.prev}
+          next={info.next}
+          onPrevious={onPrevious}
+          onNext={onNext}
+        />
+        <Characters characters={characters}></Characters>
+        <Pagination />
       </div>
     </>
   );
